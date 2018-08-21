@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+
+</head>
+<body>
+<div id="app" style="margin-left: 100px;margin-right: 100px;margin-top: 100px ">
+
+
+    <p style="font: 20px Extra large">XX公司文件共享</p>
+    </br>
+
+    <el-table
+            :data="tableData"
+            style="width: 100%">
+        <el-table-column
+                label="上传日期"
+                width="180">
+            <template slot-scope="scope" style="margin-left: 50px">
+                <i class="el-icon-time"></i>
+                <span >{{ scope.row.date }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column
+                label="文件名"
+                width="600">
+            <template slot-scope="scope">
+                <p>{{ scope.row.address }}</p>
+
+            </template>
+        </el-table-column>
+        <el-table-column label="操作">
+            <template slot-scope="scope">
+                <el-button
+                        size="mini"
+                        @click="downLoad('http://localhost:63342/vue_learn/file.docx')">下载
+                </el-button>
+
+                <el-button
+                        size="mini"
+                        @click="tip">使用帮助
+                </el-button>
+            </template>
+
+
+
+        </el-table-column>
+    </el-table>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            tableData:[{
+                date: '2016-05-02',
+                name: '王小虎',
+                address: '关于固定资产申请的文档下载'
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                address: '关于固定互联网入网申请的文档下载'
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                address: '关于脱密申请申请的文档下载'
+            }, {
+                date: '2016-05-03',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1516 弄'
+            }]
+
+        },
+        methods: {
+
+            downLoad: function (url) {
+                console.log('downLoad!');
+                window.location.href = url;
+            },
+
+            tip: function () {
+                const h = this.$createElement;
+                this.$msgbox({
+                    title: '使用帮助',
+                    message: h('p', null, [
+                        h('span', null, '内容可以是 '),
+                        h('i', {style: 'color: teal'}, 'VNode'),
+                        h('p', null, '这是测试p标签 ')
+                    ]),
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                })
+            }
+        }
+
+
+    })
+</script>
+</html>

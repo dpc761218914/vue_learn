@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+
+
+</head>
+<body>
+<div id="app" style="margin-left: 100px;margin-right: 100px;margin-top: 100px ">
+
+
+    <p style="font: 20px Extra large">XX公司视频教程</p>
+    </br>
+
+
+    <template>
+        <div>
+            <video id="myvideo" :src="videoSrc" :poster="videoImg" :muted="muteStatus" :autoplay="playStatus" height="414" width="720">
+                your browser does not support the video tag
+            </video>
+            <span class="ico ico-sound" :class="{ active: isMute }" v-on:click="closeSoundClick()"></span>
+            <span class="ico ico-skip"></span>
+            <span class="ico ico-video" :class="{ hide: isPlay }" v-on:click="playClick()"></span>
+        </div>
+    </template>
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            _dom:"",
+            videoSrc:'http://babylife.qiniudn.com/FtRVyPQHHocjVYjeJSrcwDkApTLQ',
+            videoImg:'http://static.fdc.com.cn/avatar/usercenter/5996999fa093c04d4b4dbaf1_162.jpg',
+            playStatus:'',
+            muteStatus:'',
+            isMute:true,
+            isPlay:false
+        },
+        methods: {
+
+            playClick:function(){
+                this.isPlay = !this.isPlay;
+                this.playStatus= 'autoplay';
+            },
+            closeSoundClick:function(){
+                this.isMute = !this.isMute;
+                if(this.isMute){
+                    this.muteStatus = '';
+                }else{
+                    this.muteStatus = 'muted';
+                }
+            }
+        }
+
+
+    })
+</script>
+</html>
